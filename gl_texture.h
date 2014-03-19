@@ -23,9 +23,9 @@
 #ifndef __2266940fc02274d1b0dbb64a279b3fa2__
 #define __2266940fc02274d1b0dbb64a279b3fa2__
 
+#include <yip-imports/gl.h>
 #include <yip-imports/stb_image.hpp>
 #include "gl_resource.h"
-#include "gl.h"
 #include <strstream>
 
 namespace GL

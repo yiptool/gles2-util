@@ -24,7 +24,7 @@
 #define __febb0d4d5a85eeec11c8faf83e369998__
 
 #include "gl_resource.h"
-#include "gl.h"
+#include <yip-imports/gl.h>
 #include <utility>
 #include <vector>
 #include <string>

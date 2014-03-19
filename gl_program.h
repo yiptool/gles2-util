@@ -23,9 +23,9 @@
 #ifndef __de0fbe635f005208ed3510d2587da3d0__
 #define __de0fbe635f005208ed3510d2587da3d0__
 
+#include <yip-imports/gl.h>
 #include "gl_shader.h"
 #include "gl_resource.h"
-#include "gl.h"
 
 namespace GL
 {

@@ -23,7 +23,7 @@
 #ifndef __9c261e9c451bfabcb33bb46b7a14672a__
 #define __9c261e9c451bfabcb33bb46b7a14672a__
 
-#include "gl.h"
+#include <yip-imports/gl.h>
 
 namespace GL
 {

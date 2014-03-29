@@ -49,7 +49,7 @@ namespace
 	};
 }
 
-GL::ResourceManager::ResourceManager(ResourceLoader & loader)
+GL::ResourceManager::ResourceManager(::Resource::Loader & loader)
 	: m_ResourceLoader(&loader)
 {
 	GL::init();

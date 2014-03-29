@@ -20,6 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE."
 
+import resources
 import stb_image_cxx
 import gl
 
@@ -27,7 +28,6 @@ public_headers
 {
 	gl_program.h
 	gl_resource.h
-	gl_resource_loader.h
 	gl_resource_manager.h
 	gl_shader.h
 	gl_texture.h
@@ -38,7 +38,6 @@ sources
 {
 	gl_program.cpp
 	gl_resource.cpp
-	gl_resource_loader.cpp
 	gl_resource_manager.cpp
 	gl_shader.cpp
 	gl_texture.cpp

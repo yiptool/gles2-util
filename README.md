@@ -106,13 +106,15 @@ to the directory where the program file is located.
 
 #### Custom resource loader
 
-Default behavior of the library is to load resources from files using *std::ifstream*.
-If this is not a desired behavior, custom resource loader could be used. Overload the
-GL::ResourceLoader class and pass it's instance to the GL::ResourceManager constructor:
+Default behavior of the library is to load resources using the standard cross-platform
+mechanism (for more information see the [resources](https://github.com/zapolnov/yip-resources)
+for more information.  If this is not a desired behavior, custom resource loader could be
+used. Overload the Resource::Loader class and pass it's instance to the GL::ResourceManager
+constructor:
 
-     class MyResourceLoader : public GL::ResourceLoader
+     class MyResourceLoader : public Resource::Loader
      {
-         GL::ResourceStreamPtr openResource(const std::string & name)
+         Resource::StreamPtr openResource(const std::string & name)
          {
              // ...
              return std::static_pointer_cast<std::istream>(std::make_shared<std::ifstream>(name));
@@ -125,7 +127,12 @@ GL::ResourceLoader class and pass it's instance to the GL::ResourceManager const
      
      // ...
      
-     GL::ResourceLoader::setInstance(std::make_shared<MyResourceLoader>());
+     static MyResourceLoader loader;
+     GL::ResourceManager manager(loader);
+
+Please note that GL::ResourceManager does not take ownership of the passed loader. It is
+application responsibility to ensure that passed resource loader is alive for a whole
+lifetime of the GL::ResourceManager instance.
 
 ### Dynamic resource creation
 

@@ -27,10 +27,12 @@ import gl
 public_headers
 {
 	gl_program.h
+	gl_program_binder.h
 	gl_resource.h
 	gl_resource_manager.h
 	gl_shader.h
 	gl_texture.h
+	gl_texture_binder.h
 	gl_vertex_attrib_pointer.h
 }
 

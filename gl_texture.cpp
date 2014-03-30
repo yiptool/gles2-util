@@ -22,6 +22,7 @@
 //
 #include "gl_texture.h"
 #include "gl_resource_manager.h"
+#include "gl_texture_binder.h"
 #include <sstream>
 #include <stdexcept>
 

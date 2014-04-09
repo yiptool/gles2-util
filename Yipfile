@@ -22,7 +22,7 @@ THE SOFTWARE."
 
 import resources
 import stb_image_cxx
-import gl
+import gles2
 
 public_headers
 {

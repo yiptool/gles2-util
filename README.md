@@ -1,5 +1,5 @@
 
-GLWrappers
+GLES2 Util
 ==========
 
 This is the convenient C++11 library for cross-platform OpenGL ES 2.0 programming.
@@ -17,9 +17,9 @@ Compiling this library
 ----------------------
 
 This library is not intended to be built directly. Instead it is supposed
-to be included into projects using the [Yip](https://github.com/zapolnov/yip.git).
+to be included into projects using the [Yip](https://github.com/yiptool/yip.git).
 
-Use the `import gles2_wrappers` directive in your `Yipfile` to use this library.
+Use the `import gles2-util` directive in your `Yipfile` to use this library.
 
 
 Library overview

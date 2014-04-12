@@ -189,5 +189,5 @@ void GL::Program::destroy()
 		GL::deleteProgram(m_Handle);
 		m_Handle = 0;
 	}
-	m_Manager = NULL;
+	m_Manager = nullptr;
 }

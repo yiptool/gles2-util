@@ -36,6 +36,15 @@ GL::Shader::Shader(ResourceManager * manager, const std::string & resName, Enum 
 	m_Handle = GL::createShader(m_Type);
 }
 
+GL::Shader::Shader(ResourceManager * manager, const std::pair<Enum, std::string> & pair)
+	: Resource(pair.second),
+	  m_Handle(0),
+	  m_Type(pair.first)
+{
+	(void)manager;
+	m_Handle = GL::createShader(m_Type);
+}
+
 GL::Shader::~Shader()
 {
 	destroy();

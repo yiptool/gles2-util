@@ -78,6 +78,14 @@ namespace GL
 		 */
 		Shader(ResourceManager * manager, const std::string & resName, Enum shaderType);
 
+		/**
+		 * Constructor.
+		 * @param manager Pointer to the resource manager.
+		 * @param pair Pair containing type of the shader in the *first* field and name of the shader
+		 * resource in the *second* field 
+		 */
+		Shader(ResourceManager * manager, const std::pair<Enum, std::string> & pair);
+
 		/** Destructor. */
 		~Shader();
 

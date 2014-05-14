@@ -34,9 +34,9 @@ namespace GL
 	 *
 	 * It is recommended to create an instance of this class instead of calling GL::bindTexture.
 	 * @code
-	 * GL::BindTexture textureBinder1(texture);
-	 * GL::BindTexture textureBinder2(texture, GL::TEXTURE1);
-	 * GL::BindTexture textureBinder2(texture, GL::TEXTURE2, GL::TEXTURE_CUBE_MAP);
+	 * GL::TextureBinder textureBinder1(texture);
+	 * GL::TextureBinder textureBinder2(texture, GL::TEXTURE1);
+	 * GL::TextureBinder textureBinder2(texture, GL::TEXTURE2, GL::TEXTURE_CUBE_MAP);
 	 * // ...
 	 * GL::drawArrays(GL::TRIANGLE_STRIP, 0, 4);
 	 * @endcode

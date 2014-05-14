@@ -26,6 +26,8 @@
 #include "gl_texture.h"
 #include "gl_shader.h"
 #include "gl_program.h"
+#include "gl_renderbuffer.h"
+#include "gl_framebuffer.h"
 #include <yip-imports/resource_loader.h>
 #include <string>
 #include <vector>
@@ -79,6 +81,22 @@ namespace GL
 		 * This method could be overriden in child classes that implement caching of resources.
 		 */
 		virtual void collectGarbage();
+
+		/**
+		 * Creates new framebuffer.
+		 * @param name Name of the framebuffer (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Pointer to the framebuffer.
+		 */
+		FramebufferPtr createFramebuffer(const std::string & name = m_DefaultFramebufferName);
+
+		/**
+		 * Creates new renderbuffer.
+		 * @param name Name of the renderbuffer (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Pointer to the renderbuffer.
+		 */
+		RenderbufferPtr createRenderbuffer(const std::string & name = m_DefaultRenderbufferName);
 
 		/**
 		 * Creates new texture.
@@ -143,6 +161,8 @@ namespace GL
 		static const std::string m_DefaultTextureName;
 		static const std::string m_DefaultShaderName;
 		static const std::string m_DefaultProgramName;
+		static const std::string m_DefaultRenderbufferName;
+		static const std::string m_DefaultFramebufferName;
 
 		::Resource::Loader * m_ResourceLoader;
 		std::vector<ResourceWeakPtr> m_AllResources;

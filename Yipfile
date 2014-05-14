@@ -27,8 +27,12 @@ import gles2
 
 public_headers
 {
+	gl_framebuffer.h
+	gl_framebuffer_binder.h
 	gl_program.h
 	gl_program_binder.h
+	gl_renderbuffer.h
+	gl_renderbuffer_binder.h
 	gl_resource.h
 	gl_resource_manager.h
 	gl_shader.h
@@ -39,7 +43,9 @@ public_headers
 
 sources
 {
+	gl_framebuffer.cpp
 	gl_program.cpp
+	gl_renderbuffer.cpp
 	gl_resource.cpp
 	gl_resource_manager.cpp
 	gl_shader.cpp

@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 //
 #include "gl_resource_manager.h"
+#include "gl_buffer_binder.h"
 #include <yip-imports/cxx-util/make_ptr.h>
 
 const std::string GL::ResourceManager::m_DefaultTextureName = "<texture>";
@@ -64,6 +65,26 @@ GL::BufferPtr GL::ResourceManager::createBuffer(const std::string & name)
 	BufferPtr buf = make_ptr<GL::Buffer>(this, name);
 	m_AllResources.push_back(buf);
 	return buf;
+}
+
+GL::BufferPtr GL::ResourceManager::createVertexBufferForQuad(float x1, float y1, float x2, float y2,
+	const std::string & name)
+{
+	const GL::Float vertices[] = { x1, y1, x2, y1, x1, y2, x2, y2 };
+	GL::BufferPtr buffer = createBuffer(name);
+	GL::BufferBinder binder(buffer, GL::ARRAY_BUFFER);
+	GL::bufferData(GL::ARRAY_BUFFER, sizeof(vertices), vertices, GL::STATIC_DRAW);
+	return buffer;
+}
+
+GL::BufferPtr GL::ResourceManager::createVertexBufferForTexturedQuad(float x1, float y1, float x2, float y2,
+	float s1, float t1, float s2, float t2, const std::string & name)
+{
+	const GL::Float vertices[] = { x1, y1, s1, t1, x2, y1, s2, t1, x1, y2, s1, t2, x2, y2, s2, t2 };
+	GL::BufferPtr buffer = createBuffer(name);
+	GL::BufferBinder binder(buffer, GL::ARRAY_BUFFER);
+	GL::bufferData(GL::ARRAY_BUFFER, sizeof(vertices), vertices, GL::STATIC_DRAW);
+	return buffer;
 }
 
 GL::FramebufferPtr GL::ResourceManager::createFramebuffer(const std::string & name)

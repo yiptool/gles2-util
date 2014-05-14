@@ -92,6 +92,42 @@ namespace GL
 		BufferPtr createBuffer(const std::string & name = m_DefaultBufferName);
 
 		/**
+		 * Creates new vertex buffer for a 2D quad.
+		 * The created buffer contains 4 vertices (two `GL::FLOAT`s per vertex) and should be rendered using
+		 * the GL::TRIANGLE_STRIP primitive.
+		 * @param x1 X coordinate of the top left corner.
+		 * @param y1 Y coordinate of the top left corner.
+		 * @param x2 X coordinate of the bottom right corner.
+		 * @param y2 Y coordinate of the bottom right corner.
+		 * @param name Name of the buffer (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Pointer to the buffer.
+		 */
+		BufferPtr createVertexBufferForQuad(float x1, float y1, float x2, float y2,
+			const std::string & name = m_DefaultBufferName);
+
+		/**
+		 * Creates new vertex buffer for a 2D quad with texture coordinates.
+		 * The created buffer contains 4 vertices (vertex consists of two `GL::FLOAT`s for position followed
+		 * by two `GL::FLOAT`s for texture coordinate) and should be rendered using
+		 * the GL::TRIANGLE_STRIP primitive.
+		 * @param x1 X coordinate of the top left corner.
+		 * @param y1 Y coordinate of the top left corner.
+		 * @param x2 X coordinate of the bottom right corner.
+		 * @param y2 Y coordinate of the bottom right corner.
+		 * @param s1 S texture coordinate of the top left corner (optional).
+		 * @param t1 T texture coordinate of the top left corner (optional).
+		 * @param s2 S texture coordinate of the bottom right corner (optional).
+		 * @param t2 T texture coordinate of the bottom right corner (optional).
+		 * @param name Name of the buffer (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Pointer to the buffer.
+		 */
+		BufferPtr createVertexBufferForTexturedQuad(float x1, float y1, float x2, float y2,
+			float s1 = 0.0f, float t1 = 0.0f, float s2 = 1.0f, float t2 = 1.0f,
+			const std::string & name = m_DefaultBufferName);
+
+		/**
 		 * Creates new framebuffer.
 		 * @param name Name of the framebuffer (optional). This is the name that will be returned by
 		 * GL::Resource::name().

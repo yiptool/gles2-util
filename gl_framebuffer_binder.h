@@ -49,19 +49,22 @@ namespace GL
 		 * @see GL::bindFramebuffer.
 		 */
 		inline FramebufferBinder(const GL::FramebufferPtr & fb, GL::Enum target = GL::FRAMEBUFFER)
-			: m_Target(target)
+			: m_Target(target),
+			  m_PreviouslyBoundBuffer(0)
 		{
+			GL::getIntegerv(GL::FRAMEBUFFER_BINDING, &m_PreviouslyBoundBuffer);
 			fb->bind(target);
 		}
 
 		/** Destructor. Calls GL::bindFramebuffer with framebuffer handle set to zero. */
 		inline ~FramebufferBinder()
 		{
-			GL::bindFramebuffer(m_Target, 0);
+			GL::bindFramebuffer(m_Target, m_PreviouslyBoundBuffer);
 		}
 
 	private:
 		GL::Enum m_Target;
+		GL::Int m_PreviouslyBoundBuffer;
 
 		FramebufferBinder(const FramebufferBinder &) = delete;
 		FramebufferBinder & operator=(const FramebufferBinder &) = delete;

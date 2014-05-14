@@ -35,6 +35,12 @@ namespace GL
 	{
 	public:
 		/**
+		 * Returns raw OpenGL ES handle of the texture.
+		 * @return Raw handle of the texture.
+		 */
+		inline UInt handle() const { return m_Handle; }
+
+		/**
 		 * Binds texture into the OpenGL context.
 		 * This is equivalent to GL::bindTexture.
 		 * @param target Target to bind texture to (default is GL::TEXTURE_2D).

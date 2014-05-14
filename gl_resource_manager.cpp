@@ -26,6 +26,7 @@
 const std::string GL::ResourceManager::m_DefaultTextureName = "<texture>";
 const std::string GL::ResourceManager::m_DefaultShaderName = "<shader>";
 const std::string GL::ResourceManager::m_DefaultProgramName = "<program>";
+const std::string GL::ResourceManager::m_DefaultBufferName = "<buffer>";
 const std::string GL::ResourceManager::m_DefaultRenderbufferName = "<renderbuffer>";
 const std::string GL::ResourceManager::m_DefaultFramebufferName = "<framebuffer>";
 
@@ -56,6 +57,13 @@ void GL::ResourceManager::collectGarbage()
 	collectGarbageIn(m_Shaders);
 	collectGarbageIn(m_Programs);
 	collectGarbageIn(m_AllResources);
+}
+
+GL::BufferPtr GL::ResourceManager::createBuffer(const std::string & name)
+{
+	BufferPtr buf = make_ptr<GL::Buffer>(this, name);
+	m_AllResources.push_back(buf);
+	return buf;
 }
 
 GL::FramebufferPtr GL::ResourceManager::createFramebuffer(const std::string & name)

@@ -26,6 +26,7 @@
 #include "gl_texture.h"
 #include "gl_shader.h"
 #include "gl_program.h"
+#include "gl_buffer.h"
 #include "gl_renderbuffer.h"
 #include "gl_framebuffer.h"
 #include <yip-imports/resource_loader.h>
@@ -81,6 +82,14 @@ namespace GL
 		 * This method could be overriden in child classes that implement caching of resources.
 		 */
 		virtual void collectGarbage();
+
+		/**
+		 * Creates new vertex or index buffer.
+		 * @param name Name of the buffer (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Pointer to the buffer.
+		 */
+		BufferPtr createBuffer(const std::string & name = m_DefaultBufferName);
 
 		/**
 		 * Creates new framebuffer.
@@ -161,6 +170,7 @@ namespace GL
 		static const std::string m_DefaultTextureName;
 		static const std::string m_DefaultShaderName;
 		static const std::string m_DefaultProgramName;
+		static const std::string m_DefaultBufferName;
 		static const std::string m_DefaultRenderbufferName;
 		static const std::string m_DefaultFramebufferName;
 

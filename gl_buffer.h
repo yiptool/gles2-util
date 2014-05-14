@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-#ifndef __a80ffac539eb132e65f6bab18d306a1b__
-#define __a80ffac539eb132e65f6bab18d306a1b__
+#ifndef __9754270c913262e56ca07abcc0bebc63__
+#define __9754270c913262e56ca07abcc0bebc63__
 
 #include <yip-imports/gl.h>
 #include "gl_resource.h"
@@ -30,37 +30,37 @@ namespace GL
 {
 	class ResourceManager;
 
-	/** OpenGL ES renderbuffer. */
-	class Renderbuffer : public Resource
+	/** OpenGL ES vertex or index buffer. */
+	class Buffer : public Resource
 	{
 	public:
 		/**
-		 * Returns raw OpenGL ES handle of the renderbuffer.
-		 * @return Raw handle of the renderbuffer.
+		 * Returns raw OpenGL ES handle of the buffer.
+		 * @return Raw handle of the buffer.
 		 */
 		inline UInt handle() const { return m_Handle; }
 
 		/**
-		 * Binds renderbuffer into the OpenGL context.
-		 * This is equivalent to GL::bindRenderbuffer.
-		 * @param target Target to bind renderbuffer to (default is GL::RENDERBUFFER).
+		 * Binds buffer into the OpenGL context.
+		 * This is equivalent to GL::bindBuffer.
+		 * @param target Target to bind buffer to.
 		 */
-		inline void bind(Enum target = GL::RENDERBUFFER) { GL::bindRenderbuffer(target, m_Handle); }
+		inline void bind(Enum target) { GL::bindBuffer(target, m_Handle); }
 
 	protected:
 		/**
 		 * Constructor.
 		 * @param resMgr Pointer to the resource manager.
-		 * @param resName Name of the renderbuffer resource.
+		 * @param resName Name of the buffer resource.
 		 */
-		Renderbuffer(ResourceManager * resMgr, const std::string & resName);
+		Buffer(ResourceManager * resMgr, const std::string & resName);
 
 		/** Destructor. */
-		~Renderbuffer();
+		~Buffer();
 
 		/**
-		 * Releases the associated OpenGL renderbuffer.
-		 * This is equivalent to GL::deleteRenderbuffers.
+		 * Releases the associated OpenGL buffer.
+		 * This is equivalent to GL::deleteBuffers.
 		 */
 		void destroy() override;
 
@@ -68,16 +68,16 @@ namespace GL
 		UInt m_Handle;
 		ResourceManager * m_Manager;
 
-		Renderbuffer(const Renderbuffer &) = delete;
-		Renderbuffer & operator=(const Renderbuffer &) = delete;
+		Buffer(const Buffer &) = delete;
+		Buffer & operator=(const Buffer &) = delete;
 
 		friend class ResourceManager;
 	};
 
-	/** Strong pointer to the OpenGL ES renderbuffer. */
-	typedef std::shared_ptr<Renderbuffer> RenderbufferPtr;
-	/** Weak pointer to the OpenGL ES renderbuffer. */
-	typedef std::weak_ptr<Renderbuffer> RenderbufferWeakPtr;
+	/** Strong pointer to the OpenGL ES buffer. */
+	typedef std::shared_ptr<Buffer> BufferPtr;
+	/** Weak pointer to the OpenGL ES buffer. */
+	typedef std::weak_ptr<Buffer> BufferWeakPtr;
 }
 
 #endif

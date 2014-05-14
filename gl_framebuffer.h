@@ -60,7 +60,7 @@ namespace GL
 
 		/**
 		 * Releases the associated OpenGL framebuffer.
-		 * This is equivalent to GL::deleteFramebuffer.
+		 * This is equivalent to GL::deleteFramebuffers.
 		 */
 		void destroy() override;
 

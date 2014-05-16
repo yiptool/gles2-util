@@ -26,7 +26,12 @@
 #include <yip-imports/gl.h>
 #include <yip-imports/stb_image.hpp>
 #include "gl_resource.h"
+
+#ifdef __ANDROID__
+#include <backward/strstream>
+#else
 #include <strstream>
+#endif
 
 namespace GL
 {

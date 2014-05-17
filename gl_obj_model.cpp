@@ -114,7 +114,7 @@ void GL::ObjModel::bindVertexBuffer(int aPos, int aTexCoord, int aNorm, int aTan
 {
 	#define OFF(X) ((void *)offsetof(ModelOBJ::Vertex, X))
 
-	GL::BufferBinder binder(GL::ARRAY_BUFFER, m_Vertices->handle());
+	GL::BufferBinder binder(m_Vertices, GL::ARRAY_BUFFER);
 	Sizei stride = Sizei(sizeof(ModelOBJ::Vertex));
 
 	if (aPos >= 0)

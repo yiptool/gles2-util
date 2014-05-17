@@ -59,12 +59,15 @@ namespace GL
 		 * array.
 		 * @see GL::vertexAttribPointer, GL::enableVertexAttribArray, GL::disableVertexAttribArray.
 		 */
-		inline VertexAttribPointer(UInt index, Int size, Enum type, Boolean normalized, Sizei stride,
+		inline VertexAttribPointer(int index, Int size, Enum type, Boolean normalized, Sizei stride,
 				const void * pointer)
 			: m_Index(index)
 		{
-			vertexAttribPointer(m_Index, size, type, normalized, stride, pointer);
-			enableVertexAttribArray(m_Index);
+			if (LIKELY(m_Index >= 0))
+			{
+				vertexAttribPointer(m_Index, size, type, normalized, stride, pointer);
+				enableVertexAttribArray(m_Index);
+			}
 		}
 
 		/**
@@ -87,17 +90,22 @@ namespace GL
 				Sizei stride, const void * pointer)
 			: m_Index(index.location())
 		{
-			enableVertexAttribArray(m_Index);
+			if (LIKELY(m_Index >= 0))
+			{
+				vertexAttribPointer(m_Index, size, type, normalized, stride, pointer);
+				enableVertexAttribArray(m_Index);
+			}
 		}
 
 		/** Destructor. Calls GL::disableVertexAttribArray. */
 		inline ~VertexAttribPointer()
 		{
-			disableVertexAttribArray(m_Index);
+			if (LIKELY(m_Index >= 0))
+				disableVertexAttribArray(m_Index);
 		}
 
 	private:
-		GL::UInt m_Index;
+		int m_Index;
 
 		VertexAttribPointer(const VertexAttribPointer &) = delete;
 		VertexAttribPointer & operator=(const VertexAttribPointer &) = delete;

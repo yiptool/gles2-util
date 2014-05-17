@@ -48,10 +48,11 @@ namespace GL
 		 * @param index Index of the generic vertex attribute to be enabled.
 		 * @see GL::enableVertexAttribArray, GL::disableVertexAttribArray.
 		 */
-		inline EnableVertexAttrib(UInt index)
+		inline EnableVertexAttrib(int index)
 			: m_Index(index)
 		{
-			enableVertexAttribArray(m_Index);
+			if (LIKELY(m_Index >= 0))
+				enableVertexAttribArray(m_Index);
 		}
 
 		/**
@@ -63,17 +64,19 @@ namespace GL
 		inline EnableVertexAttrib(const GL::Attrib & index)
 			: m_Index(index.location())
 		{
-			enableVertexAttribArray(m_Index);
+			if (LIKELY(m_Index >= 0))
+				enableVertexAttribArray(m_Index);
 		}
 
 		/** Destructor. Calls GL::disableVertexAttribArray. */
 		inline ~EnableVertexAttrib()
 		{
-			disableVertexAttribArray(m_Index);
+			if (LIKELY(m_Index >= 0))
+				disableVertexAttribArray(m_Index);
 		}
 
 	private:
-		GL::UInt m_Index;
+		int m_Index;
 
 		EnableVertexAttrib(const EnableVertexAttrib &) = delete;
 		EnableVertexAttrib & operator=(const EnableVertexAttrib &) = delete;

@@ -27,6 +27,7 @@ import gles2
 
 public_headers
 {
+	gl_attrib.h
 	gl_buffer.h
 	gl_buffer_binder.h
 	gl_framebuffer.h

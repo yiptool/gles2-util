@@ -24,6 +24,7 @@
 #define __9c261e9c451bfabcb33bb46b7a14672a__
 
 #include <yip-imports/gl.h>
+#include "gl_attrib.h"
 
 namespace GL
 {
@@ -61,6 +62,30 @@ namespace GL
 		inline VertexAttribPointer(UInt index, Int size, Enum type, Boolean normalized, Sizei stride,
 				const void * pointer)
 			: m_Index(index)
+		{
+			vertexAttribPointer(m_Index, size, type, normalized, stride, pointer);
+			enableVertexAttribArray(m_Index);
+		}
+
+		/**
+		 * Constructor.
+		 * Calls GL::vertexAttribPointer and GL::enableVertexAttribArray.
+		 * Parameters are the same as those of GL::vertexAttribPointer.
+		 * @param index Attribute to be modified.
+		 * @param size Number of components per generic vertex attribute. Must be 1, 2, 3 or 4.
+		 * @param type Data type of each component in the array. Symbolic constants GL::BYTE, GL::UNSIGNED_BYTE,
+		 * GL::SHORT, GL::UNSIGNED_SHORT, GL::FIXED or GL::FLOAT are accepted.
+		 * @param normalized Specifies whether fixed-point data values should be normalized (GL::TRUE) or
+		 * converted directly as fixed-point values (GL::FALSE) when they are accessed.
+		 * @param stride Byte offset between consecutive generic vertex attributes. If *stride* is 0, the generic
+		 * vertex attributes are understood to be tightly packed in the array.
+		 * @param pointer Specifies a pointer to the first component of the first generic vertex attribute in the
+		 * array.
+		 * @see GL::vertexAttribPointer, GL::enableVertexAttribArray, GL::disableVertexAttribArray.
+		 */
+		inline VertexAttribPointer(const GL::Attrib & index, Int size, Enum type, Boolean normalized,
+				Sizei stride, const void * pointer)
+			: m_Index(stride.location())
 		{
 			vertexAttribPointer(m_Index, size, type, normalized, stride, pointer);
 			enableVertexAttribArray(m_Index);

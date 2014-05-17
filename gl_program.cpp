@@ -22,6 +22,7 @@
 //
 #include "gl_program.h"
 #include "gl_uniform.h"
+#include "gl_attrib.h"
 #include "gl_resource_manager.h"
 #include "gl_program_binder.h"
 #include <sstream>

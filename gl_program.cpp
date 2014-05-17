@@ -27,6 +27,7 @@
 #include "gl_program_binder.h"
 #include "gl_vertex_attrib_pointer.h"
 #include "gl_enable_vertex_attrib.h"
+#include <yip-imports/cxx-util/macros.h>
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
@@ -37,8 +38,7 @@ static bool iswhite(char ch)
 }
 
 GL::Program::Program(ResourceManager * resMgr, const std::string & resName)
-	: Resource(resName),
-	  m_Manager(resMgr)
+	: Resource(resMgr, resName)
 {
 	m_Handle = GL::createProgram();
 }
@@ -50,7 +50,7 @@ GL::Program::~Program()
 
 void GL::Program::initFromSource(const char * data)
 {
-	if (!m_Manager)
+	if (UNLIKELY(!manager()))
 		throw std::runtime_error("resource manager is not available.");
 
 	std::vector<std::string> lines;
@@ -136,21 +136,21 @@ void GL::Program::initFromSource(const char * data)
 				std::string filename(file);
 				if (filename.length() > 0 && filename[filename.length() - 1] == '\n')
 					filename.resize(filename.length() - 1);
-				attachShader(m_Manager->getShader(type, filename));
+				attachShader(manager()->getShader(type, filename));
 			}
 		}
 	}
 
 	if (hasVertex)
 	{
-		ShaderPtr shader = m_Manager->createShader(GL::VERTEX_SHADER);
+		ShaderPtr shader = manager()->createShader(GL::VERTEX_SHADER);
 		shader->initFromSource(vertex);
 		attachShader(shader);
 	}
 
 	if (hasFragment)
 	{
-		ShaderPtr shader = m_Manager->createShader(GL::FRAGMENT_SHADER);
+		ShaderPtr shader = manager()->createShader(GL::FRAGMENT_SHADER);
 		shader->initFromSource(fragment);
 		attachShader(shader);
 	}
@@ -193,5 +193,4 @@ void GL::Program::destroy()
 		GL::deleteProgram(m_Handle);
 		m_Handle = 0;
 	}
-	m_Manager = nullptr;
 }

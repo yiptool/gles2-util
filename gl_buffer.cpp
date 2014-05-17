@@ -26,9 +26,8 @@
 #include <stdexcept>
 
 GL::Buffer::Buffer(ResourceManager * resMgr, const std::string & resName)
-	: Resource(resName),
-	  m_Handle(0),
-	  m_Manager(resMgr)
+	: Resource(resMgr, resName),
+	  m_Handle(0)
 {
 	GL::genBuffers(1, &m_Handle);
 }
@@ -45,5 +44,4 @@ void GL::Buffer::destroy()
 		GL::deleteBuffers(1, &m_Handle);
 		m_Handle = 0;
 	}
-	m_Manager = nullptr;
 }

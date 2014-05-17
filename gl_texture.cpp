@@ -27,12 +27,11 @@
 #include <stdexcept>
 
 GL::Texture::Texture(GL::ResourceManager * mgr, const std::string & resName)
-	: Resource(resName),
+	: Resource(mgr, resName),
 	  m_Handle(0),
 	  m_Width(0),
 	  m_Height(0)
 {
-	(void)mgr;
 	GL::genTextures(1, &m_Handle);
 }
 

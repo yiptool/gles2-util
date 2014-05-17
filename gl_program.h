@@ -134,7 +134,6 @@ namespace GL
 
 	private:
 		UInt m_Handle;
-		ResourceManager * m_Manager;
 
 		Program(const Program &) = delete;
 		Program & operator=(const Program &) = delete;

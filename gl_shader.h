@@ -72,19 +72,19 @@ namespace GL
 	protected:
 		/**
 		 * Constructor.
-		 * @param manager Pointer to the resource manager.
+		 * @param resMgr Pointer to the resource manager.
 		 * @param resName Name of the shader resource.
 		 * @param shaderType Type of the shader. Could be GL::VERTEX_SHADER or GL::FRAGMENT_SHADER.
 		 */
-		Shader(ResourceManager * manager, const std::string & resName, Enum shaderType);
+		Shader(ResourceManager * resMgr, const std::string & resName, Enum shaderType);
 
 		/**
 		 * Constructor.
-		 * @param manager Pointer to the resource manager.
+		 * @param resMgr Pointer to the resource manager.
 		 * @param pair Pair containing type of the shader in the *first* field and name of the shader
 		 * resource in the *second* field 
 		 */
-		Shader(ResourceManager * manager, const std::pair<Enum, std::string> & pair);
+		Shader(ResourceManager * resMgr, const std::pair<Enum, std::string> & pair);
 
 		/** Destructor. */
 		~Shader();

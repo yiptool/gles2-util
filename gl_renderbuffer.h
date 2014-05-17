@@ -66,7 +66,6 @@ namespace GL
 
 	private:
 		UInt m_Handle;
-		ResourceManager * m_Manager;
 
 		Renderbuffer(const Renderbuffer &) = delete;
 		Renderbuffer & operator=(const Renderbuffer &) = delete;

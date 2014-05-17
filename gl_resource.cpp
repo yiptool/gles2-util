@@ -22,8 +22,9 @@
 //
 #include "gl_resource.h"
 
-GL::Resource::Resource(const std::string & resName)
-	: m_Name(resName)
+GL::Resource::Resource(ResourceManager * resMgr, const std::string & resName)
+	: m_Manager(resMgr),
+	  m_Name(resName)
 {
 }
 

@@ -66,7 +66,6 @@ namespace GL
 
 	private:
 		UInt m_Handle;
-		ResourceManager * m_Manager;
 
 		Buffer(const Buffer &) = delete;
 		Buffer & operator=(const Buffer &) = delete;

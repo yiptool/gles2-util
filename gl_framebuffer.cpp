@@ -26,9 +26,8 @@
 #include <stdexcept>
 
 GL::Framebuffer::Framebuffer(ResourceManager * resMgr, const std::string & resName)
-	: Resource(resName),
-	  m_Handle(0),
-	  m_Manager(resMgr)
+	: Resource(resMgr, resName),
+	  m_Handle(0)
 {
 	GL::genFramebuffers(1, &m_Handle);
 }
@@ -45,5 +44,4 @@ void GL::Framebuffer::destroy()
 		GL::deleteFramebuffers(1, &m_Handle);
 		m_Handle = 0;
 	}
-	m_Manager = nullptr;
 }

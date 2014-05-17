@@ -27,21 +27,19 @@
 #include <iomanip>
 #include <stdexcept>
 
-GL::Shader::Shader(ResourceManager * manager, const std::string & resName, Enum shaderType)
-	: Resource(resName),
+GL::Shader::Shader(ResourceManager * resMgr, const std::string & resName, Enum shaderType)
+	: Resource(resMgr, resName),
 	  m_Handle(0),
 	  m_Type(shaderType)
 {
-	(void)manager;
 	m_Handle = GL::createShader(m_Type);
 }
 
-GL::Shader::Shader(ResourceManager * manager, const std::pair<Enum, std::string> & pair)
-	: Resource(pair.second),
+GL::Shader::Shader(ResourceManager * resMgr, const std::pair<Enum, std::string> & pair)
+	: Resource(resMgr, pair.second),
 	  m_Handle(0),
 	  m_Type(pair.first)
 {
-	(void)manager;
 	m_Handle = GL::createShader(m_Type);
 }
 

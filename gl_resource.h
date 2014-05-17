@@ -41,12 +41,19 @@ namespace GL
 		 */
 		inline const std::string & name() const noexcept { return m_Name; }
 
+		/**
+		 * Returns pointer to the resource manager for this resource.
+		 * @return Pointer to the resource manager.
+		 */
+		inline ResourceManager * manager() const noexcept { return m_Manager; }
+
 	protected:
 		/**
 		 * Constructor.
+		 * @param resMgr Pointer to the resource manager.
 		 * @param resName Name of the resource.
 		 */
-		Resource(const std::string & resName);
+		Resource(ResourceManager * resMgr, const std::string & resName);
 
 		/** Destructor. */
 		virtual ~Resource();
@@ -59,6 +66,7 @@ namespace GL
 		virtual void destroy() = 0;
 
 	private:
+		ResourceManager * m_Manager;
 		std::string m_Name;
 
 		Resource(const Resource &) = delete;

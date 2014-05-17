@@ -66,7 +66,6 @@ namespace GL
 
 	private:
 		UInt m_Handle;
-		ResourceManager * m_Manager;
 
 		Framebuffer(const Framebuffer &) = delete;
 		Framebuffer & operator=(const Framebuffer &) = delete;

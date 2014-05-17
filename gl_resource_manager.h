@@ -194,6 +194,19 @@ namespace GL
 		ProgramPtr createProgram(const std::string & name = m_DefaultProgramName);
 
 		/**
+		 * Creates new program from two shaders.
+		 * This method always creates a new program, even if there is one with the same name in the resource
+		 * manager. Created program is not registered within a manager.
+		 * @param vertex Name of the vertex shader. The shader will be loaded using the getShader method.
+		 * @param fragment Name of the fragment shader. The shader will be loaded using the getShader method.
+		 * @param name Name of the program (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Pointer to the program.
+		 */
+		ProgramPtr createProgram(const std::string & vertex, const std::string & fragment,
+			const std::string & name = m_DefaultProgramName);
+
+		/**
 		 * Loads program with the specified name.
 		 * This method does not load a program if it has already been loaded; in this case it returns
 		 * the cached program.

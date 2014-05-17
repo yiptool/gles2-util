@@ -140,6 +140,16 @@ GL::ProgramPtr GL::ResourceManager::createProgram(const std::string & name)
 	return program;
 }
 
+GL::ProgramPtr GL::ResourceManager::createProgram(const std::string & vertex, const std::string & fragment,
+	const std::string & name)
+{
+	ProgramPtr program = make_ptr<GL::Program>(this, name);
+	program->attachShader(getShader(GL::VERTEX_SHADER, vertex));
+	program->attachShader(getShader(GL::FRAGMENT_SHADER, fragment));
+	m_AllResources.push_back(program);
+	return program;
+}
+
 GL::ProgramPtr GL::ResourceManager::getProgram(const std::string & name)
 {
 	bool isNew = false;

@@ -85,9 +85,8 @@ namespace GL
 		 */
 		inline VertexAttribPointer(const GL::Attrib & index, Int size, Enum type, Boolean normalized,
 				Sizei stride, const void * pointer)
-			: m_Index(stride.location())
+			: m_Index(index.location())
 		{
-			vertexAttribPointer(m_Index, size, type, normalized, stride, pointer);
 			enableVertexAttribArray(m_Index);
 		}
 

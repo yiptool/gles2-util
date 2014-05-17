@@ -25,6 +25,8 @@
 #include "gl_attrib.h"
 #include "gl_resource_manager.h"
 #include "gl_program_binder.h"
+#include "gl_vertex_attrib_pointer.h"
+#include "gl_enable_vertex_attrib.h"
 #include <sstream>
 #include <stdexcept>
 #include <iostream>

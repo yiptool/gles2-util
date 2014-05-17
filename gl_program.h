@@ -86,14 +86,14 @@ namespace GL
 		inline void use() { GL::useProgram(m_Handle); }
 
 		/**
-		 * Retrieves location of the given attribute.
+		 * Retrieves location of the specified attribute.
 		 * @param name Name of the attribute.
 		 * @return Location of the attribute or -1 if attribute was not found in the program.
 		 */
 		inline int getAttribLocation(const char * name) const { return GL::getAttribLocation(m_Handle, name); }
 
 		/**
-		 * Retrieves location of the given attribute.
+		 * Retrieves location of the specified attribute.
 		 * @param name Name of the attribute.
 		 * @return Location of the attribute or -1 if attribute was not found in the program.
 		 */
@@ -101,14 +101,14 @@ namespace GL
 			{ return GL::getAttribLocation(m_Handle, name.c_str()); }
 
 		/**
-		 * Retrieves location of the given uniform.
+		 * Retrieves location of the specified uniform.
 		 * @param name Name of the uniform.
 		 * @return Location of the uniform or -1 if uniform was not found in the program.
 		 */
 		inline int getUniformLocation(const char * name) const { return GL::getUniformLocation(m_Handle, name); }
 
 		/**
-		 * Retrieves location of the given uniform.
+		 * Retrieves location of the specified uniform.
 		 * @param name Name of the uniform.
 		 * @return Location of the uniform or -1 if uniform was not found in the program.
 		 */

@@ -40,6 +40,7 @@ public_headers
 	gl_shader.h
 	gl_texture.h
 	gl_texture_binder.h
+	gl_uniform.h
 	gl_vertex_attrib_pointer.h
 }
 

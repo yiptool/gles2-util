@@ -29,6 +29,7 @@
 namespace GL
 {
 	class ResourceManager;
+	class ObjModel;
 
 	/** OpenGL ES vertex or index buffer. */
 	class Buffer : public Resource
@@ -71,6 +72,7 @@ namespace GL
 		Buffer & operator=(const Buffer &) = delete;
 
 		friend class ResourceManager;
+		friend class ObjModel;
 	};
 
 	/** Strong pointer to the OpenGL ES buffer. */

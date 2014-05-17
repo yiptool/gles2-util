@@ -57,6 +57,7 @@ void GL::ResourceManager::collectGarbage()
 	collectGarbageIn(m_Textures);
 	collectGarbageIn(m_Shaders);
 	collectGarbageIn(m_Programs);
+	collectGarbageIn(m_ObjModels);
 	collectGarbageIn(m_AllResources);
 }
 
@@ -157,6 +158,30 @@ GL::ProgramPtr GL::ResourceManager::getProgram(const std::string & name)
 	if (isNew)
 		program->initFromSource(m_ResourceLoader->loadResource(name));
 	return program;
+}
+
+GL::ObjModelPtr GL::ResourceManager::createObjModel(::Resource::Loader & loader, const std::string & name)
+{
+	ObjModelPtr model = make_ptr<ObjModel>(this, loader, name);
+	m_AllResources.push_back(model);
+	return model;
+}
+
+GL::ObjModelPtr GL::ResourceManager::getObjModel(const std::string & name)
+{
+	ObjModelPtr result;
+	auto it = m_ObjModels.find(name);
+	if (it != m_ObjModels.end() && (result = it->second.lock()))
+		return result;
+	else
+	{
+		result = make_ptr<ObjModel>(this, *m_ResourceLoader, name);
+		if (it != m_ObjModels.end())
+			it->second = result;
+		else
+			m_ObjModels.insert(std::make_pair(name, result));
+		return result;
+	}
 }
 
 template <class T> static bool expired(const std::weak_ptr<T> & ptr)

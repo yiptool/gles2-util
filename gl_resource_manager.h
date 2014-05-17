@@ -29,6 +29,7 @@
 #include "gl_buffer.h"
 #include "gl_renderbuffer.h"
 #include "gl_framebuffer.h"
+#include "gl_obj_model.h"
 #include <yip-imports/resource_loader.h>
 #include <string>
 #include <vector>
@@ -215,6 +216,21 @@ namespace GL
 		 */
 		ProgramPtr getProgram(const std::string & name);
 
+		/**
+		 * Parses the Alias|Wavefront OBJ model.
+		 * @param loader Resource loader to use.
+		 * @param name Name of the file.
+		 * @return Pointer to the model.
+		 */
+		ObjModelPtr createObjModel(::Resource::Loader & loader, const std::string & name);
+
+		/**
+		 * Loads the specified Alias|Wavefront OBJ model from resource.
+		 * @param name Name of the file.
+		 * @return Pointer to the model.
+		 */
+		ObjModelPtr getObjModel(const std::string & name);
+
 	private:
 		static const std::string m_DefaultTextureName;
 		static const std::string m_DefaultShaderName;
@@ -228,6 +244,7 @@ namespace GL
 		std::unordered_map<std::string, TextureWeakPtr> m_Textures;
 		std::unordered_map<Internal::ShaderMapKey, ShaderWeakPtr, Internal::ShaderMapKeyHash> m_Shaders;
 		std::unordered_map<std::string, ProgramWeakPtr> m_Programs;
+		std::unordered_map<std::string, ObjModelWeakPtr> m_ObjModels;
 
 		template <class T> void collectGarbageIn(T & collection);
 		template <class T, class P, class M, class K>

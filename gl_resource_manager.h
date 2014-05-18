@@ -161,11 +161,12 @@ namespace GL
 		 * Creates new texture.
 		 * This method always creates a new texture, even if there is one with the same name in the resource
 		 * manager. Created texture is not registered within a manager.
+		 * @param target Texture binding target (GL::TEXTURE_2D or GL::TEXTURE_CUBE_MAP).
 		 * @param name Name of the texture (optional). This is the name that will be returned by
 		 * GL::Resource::name().
 		 * @return Pointer to the texture.
 		 */
-		TexturePtr createTexture(const std::string & name = m_DefaultTextureName);
+		TexturePtr createTexture(GL::Enum target = GL::TEXTURE_2D, const std::string & name = m_DefaultTextureName);
 
 		/**
 		 * Loads texture with the specified name.

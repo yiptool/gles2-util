@@ -46,11 +46,16 @@ namespace GL
 		inline UInt handle() const { return m_Handle; }
 
 		/**
+		 * Returns texture binding target.
+		 * @return Texture binding target.
+		 */
+		inline GL::Enum target() const { return m_Target; }
+
+		/**
 		 * Binds texture into the OpenGL context.
 		 * This is equivalent to GL::bindTexture.
-		 * @param target Target to bind texture to (default is GL::TEXTURE_2D).
 		 */
-		inline void bind(Enum target = GL::TEXTURE_2D) { GL::bindTexture(target, m_Handle); }
+		inline void bind() { GL::bindTexture(m_Target, m_Handle); }
 
 		/**
 		 * Initializes texture from the specified stream.
@@ -137,8 +142,9 @@ namespace GL
 		 * Constructor.
 		 * @param mgr Pointer to the resource manager.
 		 * @param resName Name of the texture resource.
+		 * @param target Texture binding target (GL::TEXTURE_2D or GL::TEXTURE_CUBE_MAP).
 		 */
-		Texture(ResourceManager * mgr, const std::string & resName);
+		Texture(ResourceManager * mgr, const std::string & resName, GL::Enum target = GL::TEXTURE_2D);
 
 		/** Destructor. */
 		~Texture();
@@ -150,6 +156,7 @@ namespace GL
 		void destroy() override;
 
 	private:
+		Enum m_Target;
 		UInt m_Handle;
 		int m_Width;
 		int m_Height;

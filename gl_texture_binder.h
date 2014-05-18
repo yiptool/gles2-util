@@ -49,16 +49,14 @@ namespace GL
 		 * Calls GL::activeTexture and GL::bindTexture with the specified texture.
 		 * @param texture Texture to use.
 		 * @param unit Texture unit to use (default is GL::TEXTURE0).
-		 * @param target Texture binding target (default is GL::TEXTURE_2D).
 		 * @see GL::bindTexture, GL::activeTexture.
 		 */
-		inline TextureBinder(const GL::TexturePtr & texture, GL::Enum unit = GL::TEXTURE0,
-				GL::Enum target = GL::TEXTURE_2D)
+		inline TextureBinder(const GL::TexturePtr & texture, GL::Enum unit = GL::TEXTURE0)
 			: m_Unit(unit),
-			  m_Target(target)
+			  m_Target(texture->target())
 		{
 			GL::activeTexture(unit);
-			texture->bind(target);
+			texture->bind();
 		}
 
 		/** Destructor. Calls GL::bindTexture with texture handle set to zero. */

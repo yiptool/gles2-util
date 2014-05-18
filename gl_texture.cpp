@@ -26,8 +26,9 @@
 #include <sstream>
 #include <stdexcept>
 
-GL::Texture::Texture(GL::ResourceManager * mgr, const std::string & resName)
+GL::Texture::Texture(GL::ResourceManager * mgr, const std::string & resName, GL::Enum target)
 	: Resource(mgr, resName),
+	  m_Target(target),
 	  m_Handle(0),
 	  m_Width(0),
 	  m_Height(0)
@@ -69,7 +70,7 @@ void GL::Texture::uploadImage(const Stb::Image & image, int level, GL::Enum targ
 	if (level == 0 || m_Width == 0 || m_Height == 0)
 		setSize(image.width(), image.height());
 
-	bind(target);
+	bind();
 	GL::pixelStorei(GL::UNPACK_ALIGNMENT, 1);
 	GL::texImage2D(target, level, fmt, image.width(), image.height(), 0, fmt, GL::UNSIGNED_BYTE, image.data());
 }

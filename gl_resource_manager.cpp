@@ -110,9 +110,9 @@ GL::RenderbufferPtr GL::ResourceManager::createRenderbuffer(const std::string & 
 	return rb;
 }
 
-GL::TexturePtr GL::ResourceManager::createTexture(const std::string & name)
+GL::TexturePtr GL::ResourceManager::createTexture(GL::Enum target, const std::string & name)
 {
-	TexturePtr texture = make_ptr<GL::Texture>(this, name);
+	TexturePtr texture = make_ptr<GL::Texture>(this, name, target);
 	m_AllResources.push_back(texture);
 	return texture;
 }

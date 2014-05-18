@@ -34,6 +34,7 @@ public_headers
 	gl_enable_vertex_attrib.h
 	gl_framebuffer.h
 	gl_framebuffer_binder.h
+	gl_model.h
 	gl_obj_model.h
 	gl_program.h
 	gl_program_binder.h
@@ -52,6 +53,7 @@ sources
 {
 	gl_buffer.cpp
 	gl_framebuffer.cpp
+	gl_model.cpp
 	gl_obj_model.cpp
 	gl_program.cpp
 	gl_renderbuffer.cpp

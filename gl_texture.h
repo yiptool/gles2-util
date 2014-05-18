@@ -104,7 +104,7 @@ namespace GL
 		 * @param level Mipmap level to upload image into
 		 * @param target Binding target for the texture.
 		 */
-		inline void uploadImage(const Stb::Image & image, int level = 0, Enum target = GL::TEXTURE_2D);
+		void uploadImage(const Stb::Image & image, int level = 0, Enum target = GL::TEXTURE_2D);
 
 		/**
 		 * Returns width of the texture in pixels.

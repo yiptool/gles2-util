@@ -29,6 +29,7 @@
 #include <vector>
 #include <stdexcept>
 #include <memory>
+#include <algorithm>
 
 GL::ObjModel::ObjModel(ResourceManager * resMgr, ::Resource::Loader & loader, const std::string & filename)
 	: Model(resMgr, filename)
@@ -110,6 +111,12 @@ GL::ObjModel::ObjModel(ResourceManager * resMgr, ::Resource::Loader & loader, co
 			mat.normalMap = manager()->getTexture(m.bumpMapFilename);
 	}
 
+	if (model.getNumberOfMaterials() == 0)
+	{
+		setNumMaterials(1);
+		material(0).initWithDefaults();
+	}
+
 	setNumMeshes(model.getNumberOfMeshes());
 	for (int i = 0; i < model.getNumberOfMeshes(); i++)
 	{
@@ -118,6 +125,6 @@ GL::ObjModel::ObjModel(ResourceManager * resMgr, ::Resource::Loader & loader, co
 
 		mm.firstIndex = m.startIndex;
 		mm.numIndices = m.triangleCount * 3;
-		mm.material = &material(m.materialIndex);
+		mm.material = &material(std::min(std::max(m.materialIndex, 0), int(numMaterials())));
 	}
 }

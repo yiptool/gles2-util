@@ -74,6 +74,9 @@ namespace GL
 			Float opacity;						/**< Opacity. */
 			GL::TexturePtr texture;				/**< Texture. */
 			GL::TexturePtr normalMap;			/**< Normal map texture. */
+
+			/** Loads default values into material variables. */
+			void initWithDefaults();
 		};
 
 		/** Mesh. */
@@ -82,6 +85,19 @@ namespace GL
 			const Material * material;			/**< Pointer to the material. */
 			Int firstIndex;						/**< First index. */
 			Int numIndices;						/**< Number of indices. */
+
+			/**
+			 * Initializes mesh data.
+			 * @param mat Pointer to the material.
+			 * @param first First index.
+			 * @param num Number of indices.
+			 */
+			inline void init(const Material * mat, Int first, Int num) noexcept
+			{
+				material = mat;
+				firstIndex = first;
+				numIndices = num;
+			}
 		};
 
 		/**

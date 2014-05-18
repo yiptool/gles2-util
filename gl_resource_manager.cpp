@@ -30,6 +30,7 @@ const std::string GL::ResourceManager::m_DefaultProgramName = "<program>";
 const std::string GL::ResourceManager::m_DefaultBufferName = "<buffer>";
 const std::string GL::ResourceManager::m_DefaultRenderbufferName = "<renderbuffer>";
 const std::string GL::ResourceManager::m_DefaultFramebufferName = "<framebuffer>";
+const std::string GL::ResourceManager::m_DefaultCubeModelName = "<cube>";
 
 GL::ResourceManager::ResourceManager(::Resource::Loader & loader)
 	: m_ResourceLoader(&loader)
@@ -86,6 +87,13 @@ GL::BufferPtr GL::ResourceManager::createVertexBufferForTexturedQuad(float x1, f
 	GL::BufferBinder binder(buffer, GL::ARRAY_BUFFER);
 	GL::bufferData(GL::ARRAY_BUFFER, sizeof(vertices), vertices, GL::STATIC_DRAW);
 	return buffer;
+}
+
+GL::CubeModelPtr GL::ResourceManager::createCubeModel(float size, bool inside, const std::string & name)
+{
+	CubeModelPtr model = make_ptr<CubeModel>(this, size, inside, name);
+	m_AllResources.push_back(model);
+	return model;
 }
 
 GL::FramebufferPtr GL::ResourceManager::createFramebuffer(const std::string & name)

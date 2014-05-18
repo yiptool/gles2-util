@@ -29,6 +29,30 @@
 #include <stdexcept>
 #include <memory>
 
+void GL::Model::Material::initWithDefaults()
+{
+	ambient[0] = 0.0f;
+	ambient[1] = 0.0f;
+	ambient[2] = 0.0f;
+	ambient[3] = 1.0f;
+
+	diffuse[0] = 1.0f;
+	diffuse[1] = 1.0f;
+	diffuse[2] = 1.0f;
+	diffuse[3] = 1.0f;
+
+	specular[0] = 0.0f;
+	specular[1] = 0.0f;
+	specular[2] = 0.0f;
+	specular[3] = 1.0f;
+
+	shininess = 0.0f;
+	opacity = 1.0f;
+
+	texture.reset();
+	normalMap.reset();
+}
+
 GL::Model::Model(ResourceManager * resMgr, const std::string & resName)
 	: Resource(resMgr, resName),
 	  m_IndexType(GL::UNSIGNED_SHORT),

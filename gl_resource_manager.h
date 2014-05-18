@@ -30,6 +30,7 @@
 #include "gl_renderbuffer.h"
 #include "gl_framebuffer.h"
 #include "gl_obj_model.h"
+#include "gl_cube_model.h"
 #include <yip-imports/resource_loader.h>
 #include <string>
 #include <vector>
@@ -127,6 +128,18 @@ namespace GL
 		BufferPtr createVertexBufferForTexturedQuad(float x1, float y1, float x2, float y2,
 			float s1 = 0.0f, float t1 = 0.0f, float s2 = 1.0f, float t2 = 1.0f,
 			const std::string & name = m_DefaultBufferName);
+
+		/**
+		 * Creates new 3D cube model.
+		 * @param size Size of the cube model.
+		 * @param inside Set to *true* if normals should look inside the cube and *false* if normals
+		 * should look outside of the cube.
+		 * @param name Name of the cube model (optional). This is the name that will be returned by
+		 * GL::Resource::name().
+		 * @return Cube model.
+		 */
+		CubeModelPtr createCubeModel(float size = 1.0f, bool inside = false,
+			const std::string & name = m_DefaultCubeModelName);
 
 		/**
 		 * Creates new framebuffer.
@@ -238,6 +251,7 @@ namespace GL
 		static const std::string m_DefaultBufferName;
 		static const std::string m_DefaultRenderbufferName;
 		static const std::string m_DefaultFramebufferName;
+		static const std::string m_DefaultCubeModelName;
 
 		::Resource::Loader * m_ResourceLoader;
 		std::vector<ResourceWeakPtr> m_AllResources;

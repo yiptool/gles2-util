@@ -76,7 +76,8 @@ GL::ObjModel::ObjModel(ResourceManager * resMgr, ::Resource::Loader & loader, co
 			std::vector<GL::UShort> data(model.getNumberOfIndices());
 			for (int i = 0; i < model.getNumberOfIndices(); i++)
 				data[i] = static_cast<GL::UShort>(model.getIndexBuffer()[i]);
-			GL::bufferData(GL::ELEMENT_ARRAY_BUFFER, Sizei(data.size()), data.data(), GL::STATIC_DRAW);
+			GL::bufferData(GL::ELEMENT_ARRAY_BUFFER, Sizei(data.size() * sizeof(GL::UShort)),
+				data.data(), GL::STATIC_DRAW);
 			setIndexType(GL::UNSIGNED_SHORT);
 		}
 		else

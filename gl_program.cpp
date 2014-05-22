@@ -88,16 +88,16 @@ void GL::Program::initFromSource(const char * data)
 	{
 		if (it->c_str()[0] != '%')
 		{
-			vertex.push_back(type == GL::NONE || type == GL::VERTEX_SHADER ? it->c_str() : "");
-			fragment.push_back(type == GL::NONE || type == GL::FRAGMENT_SHADER ? it->c_str() : "");
+			vertex.push_back(type == GL::NONE || type == GL::VERTEX_SHADER ? it->c_str() : "\n");
+			fragment.push_back(type == GL::NONE || type == GL::FRAGMENT_SHADER ? it->c_str() : "\n");
 		}
 		else
 		{
 			const std::string & str = *it;
 			const char * file = nullptr;
 
-			vertex.push_back("");
-			fragment.push_back("");
+			vertex.push_back("\n");
+			fragment.push_back("\n");
 
 			if (str.length() >= 7 && !memcmp(str.c_str(), "%vertex", 7))
 			{

@@ -34,7 +34,7 @@ GL::CubeModel::CubeModel(ResourceManager * resMgr, float size, bool inside, cons
 	const float S = size * 0.5f;
 	const float N = (inside ? -1.0f : 1.0f);
 
-	const Model::Vertex vertices[] =
+	Model::Vertex vertices[] =
 	{
 		// Position     | TexCoord | Normal        | Tangent       | Binormal
 		// Top
@@ -68,6 +68,66 @@ GL::CubeModel::CubeModel(ResourceManager * resMgr, float size, bool inside, cons
 		{ { -S, -S,  S }, { 1, 1 }, {  0,  0,  N }, { 0, 0, 0, 0 }, { 0, 0, 0 } },		// 22
 		{ { -S,  S,  S }, { 1, 0 }, {  0,  0,  N }, { 0, 0, 0, 0 }, { 0, 0, 0 } },		// 23
 	};
+
+	for (unsigned i = 0; i < 24; i += 4)
+	{
+		float deltaPos1x = vertices[i + 1].position[0] - vertices[i].position[0];
+		float deltaPos1y = vertices[i + 1].position[1] - vertices[i].position[1];
+		float deltaPos1z = vertices[i + 1].position[2] - vertices[i].position[2];
+
+		float deltaPos2x = vertices[i + 2].position[0] - vertices[i].position[0];
+		float deltaPos2y = vertices[i + 2].position[1] - vertices[i].position[1];
+		float deltaPos2z = vertices[i + 2].position[2] - vertices[i].position[2];
+
+		float deltaUV1x = vertices[i + 1].texCoord[0] - vertices[i].texCoord[0];
+		float deltaUV1y = vertices[i + 1].texCoord[1] - vertices[i].texCoord[1];
+
+		float deltaUV2x = vertices[i + 2].texCoord[0] - vertices[i].texCoord[0];
+		float deltaUV2y = vertices[i + 2].texCoord[1] - vertices[i].texCoord[1];
+
+		float r = 1.0f / (deltaUV1x * deltaUV2y - deltaUV1y * deltaUV2x);
+		float tanx = (deltaPos1x * deltaUV2y - deltaPos2x * deltaUV1y) * r;
+		float tany = (deltaPos1y * deltaUV2y - deltaPos2y * deltaUV1y) * r;
+		float tanz = (deltaPos1z * deltaUV2y - deltaPos2z * deltaUV1y) * r;
+
+		float bitanx = (deltaPos2x * deltaUV1x - deltaPos1x * deltaUV2x) * r;
+		float bitany = (deltaPos2y * deltaUV1x - deltaPos1y * deltaUV2x) * r;
+		float bitanz = (deltaPos2z * deltaUV1x - deltaPos1z * deltaUV2x) * r;
+
+		// Setting tangent
+		vertices[i].tangent[0] = tanx;
+		vertices[i].tangent[1] = tany;
+		vertices[i].tangent[2] = tanz;
+
+		vertices[i + 1].tangent[0] = tanx;
+		vertices[i + 1].tangent[1] = tany;
+		vertices[i + 1].tangent[2] = tanz;
+
+		vertices[i + 2].tangent[0] = tanx;
+		vertices[i + 2].tangent[1] = tany;
+		vertices[i + 2].tangent[2] = tanz;
+
+		vertices[i + 3].tangent[0] = tanx;
+		vertices[i + 3].tangent[1] = tany;
+		vertices[i + 3].tangent[2] = tanz;
+
+		// Setting bitangent
+		vertices[i].binormal[0] = bitanx;
+		vertices[i].binormal[1] = bitany;
+		vertices[i].binormal[2] = bitanz;
+
+		vertices[i + 1].binormal[0] = bitanx;
+		vertices[i + 1].binormal[1] = bitany;
+		vertices[i + 1].binormal[2] = bitanz;
+
+		vertices[i + 2].binormal[0] = bitanx;
+		vertices[i + 2].binormal[1] = bitany;
+		vertices[i + 2].binormal[2] = bitanz;
+
+		vertices[i + 3].binormal[0] = bitanx;
+		vertices[i + 3].binormal[1] = bitany;
+		vertices[i + 3].binormal[2] = bitanz;
+	}
 
 	std::vector<GL::UByte> indices;
 	if (inside)
